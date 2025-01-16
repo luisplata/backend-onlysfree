@@ -29,6 +29,15 @@ RUN mkdir -p /var/www/html/storage/framework/{views,sessions,cache} \
     && chmod -R o+w /var/www/html/storage \
     && chmod -R o+w /var/www/html/bootstrap/cache
 
+RUN composer install
+
+RUN php artisan key:generate
+
+RUN php artisan config:cache
+RUN php artisan route:cache
+
+RUN php artisan storage:link
+
 # Exponer el puerto usado por PHP-FPM
 EXPOSE 9000
 

@@ -2,14 +2,16 @@ version: '3.8'
 services:
   app:
     build:
-      context: app
+      context: .
       dockerfile: Dockerfile
     container_name: laravel_app
     working_dir: /var/www/html
     volumes:
-      - ./app:/var/www/html
+      - .:/var/www/html
     networks:
       - laravel
+    depends_on:
+        - db
 
   webserver:
     image: nginx:latest
@@ -17,7 +19,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./app:/var/www/html
+      - .:/var/www/html
       - ./docker/nginx:/etc/nginx/conf.d
     depends_on:
       - app
