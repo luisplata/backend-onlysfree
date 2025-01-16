@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Producto;
+use App\Models\Stream;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,5 +20,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        $this->call(UsuarioInicial::class);
+        $this->call(Categorias::class);
+        Producto::factory()->count(200)->create();
+        Stream::factory()->count(200)->create();
     }
 }
