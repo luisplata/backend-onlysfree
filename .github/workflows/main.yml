@@ -33,7 +33,7 @@ jobs:
           APP_DIR=$HOME/${{ secrets.APP_DIR }}
           cd $APP_DIR
           LOG_FILE="$APP_DIR/deployment_$(date '+%Y-%m-%d_%H-%M-%S').log"
-          { 
+          {
             git pull origin main &&
             composer install &&
             composer update &&
@@ -44,8 +44,7 @@ jobs:
             php artisan route:cache &&
             php artisan view:clear &&
             php artisan view:cache &&
-            php artisan cache:clear &&
-            php artisan storage:link
+            php artisan cache:clear
           } > $LOG_FILE 2>&1 || {
             echo "An error occurred during deployment. See $LOG_FILE for details."
           }
