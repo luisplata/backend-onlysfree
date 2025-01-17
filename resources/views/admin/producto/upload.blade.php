@@ -5,7 +5,7 @@
     {{ csrf_field() }}
     Archivo CSV:
     <br />
-    <input type="file" name="logo" />
+    <input type="file" name="logo" accept=".csv" />
 
 
     <div class="clearfix"></div>

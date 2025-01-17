@@ -7,6 +7,7 @@ use App\Models\Producto;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use League\Csv\Reader;
 
 class ProductoController extends Controller {
 
@@ -15,10 +16,16 @@ class ProductoController extends Controller {
     }
 
     public function UploadFile(Request $request){
-        $file = $request->file('logo');
-        $reader = Reader::createFromFileObject($file->openFile());
+
+        if (!$request->hasFile('photo')) {
+            dd("No hay archivo");
+        }
+        $file = $request->logo;
+        // Leer el archivo CSV
+        $reader = Reader::createFromPath($file->getPathname(), 'r');
+        $reader->setHeaderOffset(0); // Si el CSV tiene encabezados
         // Create a customer from each row in the CSV file
-        foreach ($reader as $index => $row) {
+        foreach ($reader as $row) {
             $producto = new Producto();
             $producto->nombre = $row[0];
             $producto->imagen = $row[1];
@@ -31,7 +38,7 @@ class ProductoController extends Controller {
             $producto->tags = $row[7];
             $producto->save();
         }
-        return redirect('admin/producto');
+        return redirect('/admin/producto');
     }
     /**
      * Display a listing of the resource.
