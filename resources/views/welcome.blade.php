@@ -25,7 +25,7 @@
         <div class="inner">
             <!-- Header -->
             <header id="header">
-                <h1><a href="{{ env('HOME') }}" class="logo"><strong>{{ env('APP_NAME') }}</strong></a></h1>
+                <h1><a href="{{ url('') }}" class="logo"><strong>{{ env('APP_NAME') }}</strong></a></h1>
                 <ul class="icons">
                     <li>
                         <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
@@ -101,7 +101,7 @@
                         </a>
                     </article>
                 </div>
-                
+
             </section>
 
             <section>

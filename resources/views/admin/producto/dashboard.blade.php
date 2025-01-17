@@ -32,9 +32,13 @@
                     <td>{{$producto->Visitas->idoAlPack}}</td>
                 @endif
                 <td><a class="btn btn-primary" href="{{url("admin/producto/$producto->id/edit")}}"><i class="fa fa-edit"></i> Editar</a></td>
-                <td>{{Form::open(["url"=>"admin/producto/$producto->id","method"=>"DELETE"])}}
+                <td>
+                    <form method="POST" action="admin/producto/{{$producto->id}}">
+                        @csrf
+                        @method("DELETE")
                     <button type="submit" class="btn btn-primary"><i class="fa fa-ellipsis-h"></i> Eliminar</button>
-                    {{Form::close()}}</td>
+                    </form>
+                </td>
             </tr>
         @endforeach
     </tbody>

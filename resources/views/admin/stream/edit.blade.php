@@ -1,8 +1,9 @@
 @extends("plantilla.app")
 
 @section("contenido")
-{{Form::open(["url"=>["admin/stream", $stream->id],"method"=>"PUT", 'files' => true])}}
-
+<form method="POST" action="admin/stream/{{$stream->id}}" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
 <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre <span class="required">*</span>
     </label>
@@ -68,7 +69,5 @@
         <button type="submit" class="btn btn-success">Guardar</button>
     </div>
 </div>
-
-
-{{Form::close()}}
+</form>
 @endsection

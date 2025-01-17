@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\GraficaController;
 use App\Http\Controllers\IndexController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\PPV;
 use App\Http\Controllers\ProductoClientCntroller;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\StreamController;
+use App\Http\Middleware\Logeado;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [IndexController::class,"index"]);
@@ -23,19 +25,18 @@ Route::get("PPV/{id}", [PPV::class,"show"]);
 
 Route::get("search/{work}", [PPV::class,"search"]);
 
-Route::get("/login", function () {
+Route::post("loginn", [LoginController::class,"login"]);
+Route::get("login", function () {
     return view("login");
 });
 Route::get("/logout", function () {
     session()->flush();
     return redirect("/login");
 });
-Route::post("/login", [LoginController::class,"login"]);
 
-Route::middleware('logeado')->group(function () {
+Route::middleware([Logeado::class])->group(function () {
     //para el admin
     Route::prefix('admin')->group(function () {
-
         Route::get("producto/upload", [ProductoController::class,"Upload"]);
         Route::post("producto/uploadFile", [ProductoController::class,"UploadFile"])->name('admin.producto.uploadFile');
         Route::get("stream/upload", [StreamController::class,"Upload"]);
@@ -45,7 +46,7 @@ Route::middleware('logeado')->group(function () {
         Route::resource("stream", StreamController::class);
         Route::resource("graficas", GraficaController::class);
     });
-    Route::resource("admin", "AdminController");
+    Route::resource("admin", AdminController::class);
 });
 
 require __DIR__.'/auth.php';

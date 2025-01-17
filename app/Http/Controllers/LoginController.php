@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller {
@@ -15,6 +16,7 @@ class LoginController extends Controller {
          * se calcula si la contraseña es igual
          * se le manda al dash board
          */
+        Log::info('Acceso a la página principal', ['user_id' => auth()->id()]);
         $user = Usuario::where("email", $request->email)->first();
         //Validamos que encontro algo
         //validamos la contraseña
@@ -23,7 +25,7 @@ class LoginController extends Controller {
         }
         //metemos datos en la session en este caso le user ID
         Session::put('admin', $user);
-        return redirect("/admin");
+        return redirect("/admin?hola=mas");
     }
 
 }

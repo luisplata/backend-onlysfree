@@ -1,8 +1,8 @@
 @extends("plantilla.app")
 
 @section("contenido")
-{{Form::open(["url"=>"admin/categoria","method"=>"POST"])}}
-
+<form method="POST" action="admin/categoria">
+    @csrf
 <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre <span class="required">*</span>
     </label>
@@ -37,7 +37,4 @@
         <button type="submit" class="btn btn-success">Submit</button>
     </div>
 </div>
-
-
-{{Form::close()}}
 @endsection

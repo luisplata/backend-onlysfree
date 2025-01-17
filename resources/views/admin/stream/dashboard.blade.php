@@ -22,10 +22,14 @@
                 <th>{{$stream->nombre}}</th>
                 <td>{{strtotime($stream->publication_date) <= strtotime(date("Y-m-d H:i:s"))?"Si":"No"}}</td>
                 <td>{{$stream->publication_date}}</td>
-                <td><a class="btn btn-primary" href='{{url("admin/stream/$stream->id/edit")}}'><i class="fa fa-edit"></i> Editar</a></td>
-                <td>{{Form::open(["url"=>"admin/stream/$stream->id","method"=>"DELETE"])}}
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-ellipsis-h"></i> Eliminar</button>
-                    {{Form::close()}}</td>
+                <td><a class="btn btn-primary" href='{{url("admin/stream//edit")}}'><i class="fa fa-edit"></i> Editar</a></td>
+                <td>
+                    <form method="POST" action="admin/stream/{{$stream->id}}/edit">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-ellipsis-h"></i> Eliminar</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
     </tbody>

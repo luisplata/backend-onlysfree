@@ -42,27 +42,28 @@
             <div class="login_wrapper">
                 <div class="animate form login_form">
                     <section class="login_content">
-                        {{Form::open(["url"=>"/login","method"=>"POST"])}}
-                        <h1>Ingreso</h1>
-                        <div>
-                            <input type="text" class="form-control" placeholder="Email" name="email" required="" />
-                        </div>
-                        <div>
-                            <input type="password" class="form-control" placeholder="Contraseña" name="pass" required="" />
-                        </div>
-                        <div>
-                            <input type="submit" class="btn btn-default submit" value="Ingresar" />
-                            <a class="btn btn-default submit" href="{{url('')}}">Regresar</a>
-                        </div>
+                        <form method="POST" action="/loginn">
+                            @csrf
+                            <h1>Ingreso</h1>
+                            <div>
+                                <input type="text" class="form-control" placeholder="Email" name="email" required="" />
+                            </div>
+                            <div>
+                                <input type="password" class="form-control" placeholder="Contraseña" name="pass" required="" />
+                            </div>
+                            <div>
+                                <input type="submit" class="btn btn-default submit" value="Ingresar" />
+                                <a class="btn btn-default submit" href="{{url('')}}">Regresar</a>
+                            </div>
 
-                        <div class="clearfix"></div>
+                            <div class="clearfix"></div>
 
-                        <div class="separator">
-                            <p class="change_link">Creado por:
-                                <a href="#signup" class="to_register"> Luis Plata </a>
-                            </p>
-                        </div>
-                        {{Form::close()}}
+                            <div class="separator">
+                                <p class="change_link">Creado por:
+                                    <a href="#signup" class="to_register"> Luis Plata </a>
+                                </p>
+                            </div>
+                        </form>
                     </section>
                 </div>
 
