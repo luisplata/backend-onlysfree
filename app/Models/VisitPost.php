@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class VisitPost extends Model
 {
     //
-    public function Post(){
-        return $this->hasOne(Producto::class);
+    public function producto()
+    {
+        return $this->belongsTo(Producto::class);
     }
 
     public function AddVisita(){

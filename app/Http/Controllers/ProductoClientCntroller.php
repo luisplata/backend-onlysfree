@@ -6,6 +6,7 @@ use App\Models\LogVisit;
 use App\Models\Producto;
 use App\Models\Stream;
 use App\Models\VisitPost;
+use Exception;
 
 class ProductoClientCntroller extends Controller
 {
@@ -74,7 +75,7 @@ class ProductoClientCntroller extends Controller
                 $visita->producto_id = $producto->id;
                 $visita->save();
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $visita = new VisitPost();
             $visita->producto_id = $producto->id;
             $visita->save();

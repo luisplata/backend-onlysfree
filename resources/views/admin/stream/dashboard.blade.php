@@ -2,8 +2,8 @@
 
 @section("contenido")
 <div class="col-md-12 col-sm-12 col-xs-12 text-right">
-    <a class="btn btn-primary" href="{{url('admin/stream/create')}}"><i class="fa fa-plus"></i> Crear single post</a>
-    <a class="btn btn-primary" href="{{url('admin/stream/upload')}}"><i class="fa fa-cloud"></i> Upload CSV File</a>
+    <a class="btn btn-primary" href="{{url('/admin/stream/create')}}"><i class="fa fa-plus"></i> Crear single post</a>
+    <a class="btn btn-primary" href="{{url('/admin/stream/upload')}}"><i class="fa fa-cloud"></i> Upload CSV File</a>
 </div>
 
 <table class="table table-striped table-hover" id="tableData">
@@ -22,9 +22,9 @@
                 <th>{{$stream->nombre}}</th>
                 <td>{{strtotime($stream->publication_date) <= strtotime(date("Y-m-d H:i:s"))?"Si":"No"}}</td>
                 <td>{{$stream->publication_date}}</td>
-                <td><a class="btn btn-primary" href='{{url("admin/stream//edit")}}'><i class="fa fa-edit"></i> Editar</a></td>
+                <td><a class="btn btn-primary" href='{{url("/admin/stream/$stream->id/edit")}}'><i class="fa fa-edit"></i> Editar</a></td>
                 <td>
-                    <form method="POST" action="admin/stream/{{$stream->id}}/edit">
+                    <form method="POST" action="/admin/stream/{{$stream->id}}">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-primary"><i class="fa fa-ellipsis-h"></i> Eliminar</button>

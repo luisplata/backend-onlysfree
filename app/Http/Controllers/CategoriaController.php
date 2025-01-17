@@ -50,11 +50,11 @@ class CategoriaController extends Controller {
             $categoria->descripcion = $request->descripcion;
             $categoria->padre = $request->padre;
             if (!$categoria->save()) {
-                return redirect("admin/categoria/create?mensaje=Ocurrio un error al crear la categoria&tipo=error");
+                return redirect("/admin/categoria/create?mensaje=Ocurrio un error al crear la categoria&tipo=error");
             }
-            return redirect("admin/categoria?mensaje=Se creo correctamente la categoria&tipo=seccess");
+            return redirect("/admin/categoria?mensaje=Se creo correctamente la categoria&tipo=seccess");
         } catch (Exception $ex) {
-            return redirect("admin/categoria?mensaje=Ocurrio un error al crear la categoria&tipo=error");
+            return redirect("/admin/categoria?mensaje=Ocurrio un error al crear la categoria&tipo=error");
         }
     }
 
@@ -103,12 +103,12 @@ class CategoriaController extends Controller {
             $categoria->descripcion = $request->descripcion;
             $categoria->padre = $request->padre;
             if ($categoria->save()) {
-                return redirect("categoria?mensaje=Se actualizo la categoria&tipo=success");
+                return redirect("/admin/categoria?mensaje=Se actualizo la categoria&tipo=success");
             } else {
-                return redirect("categoria?mensaje=No se actualizo la categoria&tipo=warining");
+                return redirect("/admincategoria?mensaje=No se actualizo la categoria&tipo=warining");
             }
         } catch (Exception $ex) {
-            return redirect("categoria?mensaje=No se actualizo la categoria&tipo=error");
+            return redirect("/admincategoria?mensaje=No se actualizo la categoria&tipo=error");
         }
     }
 
@@ -124,12 +124,12 @@ class CategoriaController extends Controller {
         try {
             $categoria = Categoria::find($id);
             if ($categoria->delete()) {
-                return redirect("categoria?mensaje=Se elimino con exito&tipo=success");
+                return redirect("/admin/categoria?mensaje=Se elimino con exito&tipo=success");
             } else {
-                return redirect("categoria?mensaje=No se elimino con exito&tipo=warining");
+                return redirect("/admin/categoria?mensaje=No se elimino con exito&tipo=warining");
             }
         } catch (Exception $ex) {
-            return redirect("categoria?mensaje=Ocurrio un error&tipo=error");
+            return redirect("/admin/categoria?mensaje=Ocurrio un error&tipo=error");
         }
     }
 

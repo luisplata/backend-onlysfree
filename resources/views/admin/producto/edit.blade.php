@@ -1,7 +1,7 @@
 @extends("plantilla.app")
 
 @section("contenido")
-<form method="POST" action="admin/producto/{{$producto->id}}" enctype="multipart/form-data">
+<form method="POST" action="/admin/producto/{{$producto->id}}" enctype="multipart/form-data">
     @csrf
     @method("PUT")
 <div class="form-group">
@@ -118,7 +118,7 @@
 <div class="ln_solid"></div>
 <div class="form-group">
     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-        <a class="btn btn-primary" href="{{url('admin/producto')}}">Cancelar</a>
+        <a class="btn btn-primary" href="{{url('/admin/producto')}}">Cancelar</a>
         <button type="submit" class="btn btn-success">Guardar</button>
     </div>
 </div>

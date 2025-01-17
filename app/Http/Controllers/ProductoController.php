@@ -169,6 +169,8 @@ class ProductoController extends Controller {
         try {
             $producto = Producto::find($id);
             Storage::delete([public_path().$producto->imagen]);
+            $producto->LogVisitas()->delete();
+            $producto->Visitas()->delete();
             if ($producto->delete()) {
                 //eliminamos el archivo
                 return redirect("admin/producto?mensaje=Se guardo el producto&tipo=success");
@@ -176,6 +178,7 @@ class ProductoController extends Controller {
                 return redirect("admin/producto?mensaje=No se guardo el producto&tipo=warining");
             }
         } catch (Exception $ex) {
+            dd($ex);
             return redirect("admin/producto?mensaje=Error&tipo=error");
         }
     }

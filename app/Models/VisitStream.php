@@ -11,7 +11,7 @@ class VisitStream extends Model
 
     //
     public function Stream(){
-        return $this->hasOne(Stream::class);
+        return $this->belongsTo(Stream::class);
     }
 
     public function AddVisita(){

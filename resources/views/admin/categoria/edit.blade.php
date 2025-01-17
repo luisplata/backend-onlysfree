@@ -1,7 +1,7 @@
 @extends("plantilla.app")
 
 @section("contenido")
-<form method="POST" action="admin/categoria/{{$categoria->id}}">
+<form method="POST" action="/admin/categoria/{{$categoria->id}}">
     @csrf
     @method("PUT")
 <div class="form-group">

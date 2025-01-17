@@ -1,7 +1,7 @@
 @extends("plantilla.app")
 
 @section("contenido")
-<form method="POST" action="admin/categoria">
+<form method="POST" action="/admin/categoria">
     @csrf
 <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nombre <span class="required">*</span>

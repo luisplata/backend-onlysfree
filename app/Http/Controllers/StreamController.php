@@ -150,6 +150,7 @@ class StreamController extends Controller
         //eliminamos el producto y los mandamos a la verga! :v
         try {
             $stream = Stream::find($id);
+            $stream->LogVisitas()->delete();
             if ($stream->delete()) {
                 //eliminamos el archivo
                 return redirect("admin/stream?mensaje=Se elimino el stream&tipo=success");
@@ -157,6 +158,7 @@ class StreamController extends Controller
                 return redirect("admin/stream?mensaje=No se elimino el stream&tipo=warining");
             }
         } catch (Exception $ex) {
+            dd($ex);
             return redirect("admin/stream?mensaje=Error&tipo=error");
         }
     }

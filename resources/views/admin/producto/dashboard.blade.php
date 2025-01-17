@@ -2,8 +2,8 @@
 
 @section("contenido")
 <div class="col-md-12 col-sm-12 col-xs-12 text-right">
-    <a class="btn btn-primary" href="{{url('admin/producto/create')}}"><i class="fa fa-plus"></i> Crear single post</a>
-    <a class="btn btn-primary" href="{{url('admin/producto/upload')}}"><i class="fa fa-cloud"></i> Upload CSV File</a>
+    <a class="btn btn-primary" href="{{url('/admin/producto/create')}}"><i class="fa fa-plus"></i> Crear single post</a>
+    <a class="btn btn-primary" href="{{url('/admin/producto/upload')}}"><i class="fa fa-cloud"></i> Upload CSV File</a>
 </div>
 
 <table class="table table-striped table-hover" id="tableData">
@@ -31,9 +31,9 @@
                     <td>{{$producto->Visitas->visita}}</td>
                     <td>{{$producto->Visitas->idoAlPack}}</td>
                 @endif
-                <td><a class="btn btn-primary" href="{{url("admin/producto/$producto->id/edit")}}"><i class="fa fa-edit"></i> Editar</a></td>
+                <td><a class="btn btn-primary" href="{{url("/admin/producto/$producto->id/edit")}}"><i class="fa fa-edit"></i> Editar</a></td>
                 <td>
-                    <form method="POST" action="admin/producto/{{$producto->id}}">
+                    <form method="POST" action="/admin/producto/{{$producto->id}}">
                         @csrf
                         @method("DELETE")
                     <button type="submit" class="btn btn-primary"><i class="fa fa-ellipsis-h"></i> Eliminar</button>
