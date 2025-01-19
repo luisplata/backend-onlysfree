@@ -2,10 +2,10 @@
 
 @section("contenido")
 <form action="{{ route('admin.producto.uploadFile') }}" method="POST" enctype="multipart/form-data">
-    {{ csrf_field() }}
+    @csrf
     Archivo CSV:
     <br />
-    <input type="file" name="logo" accept=".csv" />
+    <input type="file" name="contenido" accept=".csv" />
 
 
     <div class="clearfix"></div>

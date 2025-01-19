@@ -14,8 +14,14 @@ class StreamController extends Controller
     }
 
     public function UploadFile(Request $request){
+        $request->validate([
+            'logo' => 'required|file|mimes:csv,txt|max:2048',
+        ]);
         $file = $request->file('logo');
-        $reader = Reader::createFromFileObject($file->openFile());
+        if (!$file->isValid()) {
+            return redirect("/admin/producto/upload?mensaje=El archivo no se pudo subir correctamente.&tipo=error");
+        }
+        $reader = Reader::createFromPath($file->getPathname(), 'r');
         // Create a customer from each row in the CSV file
         foreach ($reader as $row) {
             $stream = new Stream();

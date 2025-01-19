@@ -16,14 +16,20 @@ class ProductoController extends Controller {
     }
 
     public function UploadFile(Request $request){
+        $request->validate([
+            'contenido' => 'required|file|mimes:csv,txt|max:2048',
+        ]);
 
-        if (!$request->hasFile('photo')) {
-            dd("No hay archivo");
+        $file = $request->file('contenido');
+
+        // Verifica si el archivo es válido
+        if (!$file->isValid()) {
+            return redirect("/admin/producto/upload?mensaje=El archivo no se pudo subir correctamente.&tipo=error")->withErrors(['contenido' => 'El archivo no se pudo subir correctamente.']);
         }
-        $file = $request->logo;
+
         // Leer el archivo CSV
         $reader = Reader::createFromPath($file->getPathname(), 'r');
-        $reader->setHeaderOffset(0); // Si el CSV tiene encabezados
+        //$reader->setHeaderOffset(0); // Si el CSV tiene encabezados
         // Create a customer from each row in the CSV file
         foreach ($reader as $row) {
             $producto = new Producto();
