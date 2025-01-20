@@ -16,9 +16,14 @@ return Application::configure(basePath: dirname(__DIR__))
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
         ]);
 
+        $middleware->encryptCookies(except: [
+            'anonymous_user_id',
+        ]);
+
         $middleware->alias([
             'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
         ]);
+        $middleware->append(\App\Http\Middleware\TrackAnonymousUser::class);
 
         //
     })

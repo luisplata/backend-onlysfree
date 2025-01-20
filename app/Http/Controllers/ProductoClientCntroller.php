@@ -43,7 +43,7 @@ class ProductoClientCntroller extends Controller
                 $visita->producto_id = $product->id;
                 $visita->save();
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $visita = new VisitPost();
             $visita->producto_id = $product->id;
             $visita->save();
