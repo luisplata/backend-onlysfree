@@ -9,7 +9,7 @@ class Producto extends Model
 {
 
     use HasFactory;
-    protected $hidden = ['hotLink','publication_date','created_at','updated_at','id','imagen','categorias_id','estado'];
+    protected $hidden = ['hotLink','publication_date','created_at','updated_at','id','categorias_id','estado'];
     public function categoria() {
         return $this->belongsTo(Categoria::class,"categorias_id");
     }
