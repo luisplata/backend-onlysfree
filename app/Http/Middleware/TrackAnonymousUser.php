@@ -25,6 +25,12 @@ class TrackAnonymousUser
         $nameOfCookie = 'anonymous_user_id';
         $anonymousUserId = Cookie::get($nameOfCookie);
 
+        $botUserAgent = '_Bot';
+        $agent = $request->header('User-Agent');
+        if ($agent.contains($botUserAgent)) {
+            $anonymousUserId = $agent;
+        }
+
         if (!$anonymousUserId) {
             $anonymousUserId = (string) Str::uuid7();
             Cookie::queue($nameOfCookie, $anonymousUserId, 60 * 24 * 365);
