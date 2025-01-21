@@ -23,3 +23,9 @@ Route::get("infiniteScrollStream",function(){
     $paginate = Stream::GetFirstStreams();
     return view("ScrollInfiniteStream",["packs"=>$paginate]);
 });
+
+Route::get("search",function(Request $request){
+    $search = $request->input("search");
+    $paginate = Producto::Search($search);
+    return response()->json($paginate);
+});

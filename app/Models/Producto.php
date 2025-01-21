@@ -43,6 +43,10 @@ class Producto extends Model
     public function ConvertNameNormalToUrl(){
         return str_replace(" ", "-", $this->nombre);
     }
+
+    public static function Search($search){
+        return Producto::where("nombre","like","%$search%")->where("estado","1")->where('publication_date', '<', date("Y-m-d H:i:s"))->orderBy('publication_date', 'desc')->paginate(10);
+    }
     public function Visitas(){
         return $this->hasOne(VisitPost::class);
     }
