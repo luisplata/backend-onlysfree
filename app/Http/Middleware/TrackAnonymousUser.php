@@ -27,7 +27,7 @@ class TrackAnonymousUser
 
         $botUserAgent = '_Bot';
         $agent = $request->header('User-Agent');
-        if ($agent.contains($botUserAgent)) {
+        if (str_contains($agent, $botUserAgent)) {
             $anonymousUserId = $agent;
         }
 
